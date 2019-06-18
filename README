@@ -1,0 +1,14 @@
+Create a simple app which shows weather information based on the city you enter. 
+Example app design is shown in "example" dir. You can either use the defined design or create one of your own.
+
+* App has to fetch weather information based on the input from the first screen.
+* Keep the code clean.
+* Write at least one unit test
+* Write at least one UI test
+* Use IoC container
+* Use ReactiveX
+* Use MVVM architecture with data binding.
+
+---
+* Weather API endpoint: http://api.openweathermap.org/data/2.5/weather?q={city name}&appid=7587eaff3affbf8e56a81da4d6c51d06
+---
