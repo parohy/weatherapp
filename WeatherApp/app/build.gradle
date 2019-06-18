@@ -14,8 +14,12 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "ENDPOINT_URL", "\"http://api.openweathermap.org/data/2.5\""
+        }
         release {
             minifyEnabled false
+            buildConfigField "String", "ENDPOINT_URL", "\"http://api.openweathermap.org/data/2.5\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
