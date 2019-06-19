@@ -1,19 +1,16 @@
 package com.parohy.weatherapp.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.parohy.weatherapp.R
-import com.parohy.weatherapp.api.WeatherRepository
-import com.parohy.weatherapp.getAppComponent
 import com.parohy.weatherapp.getViewModelFactory
 import com.parohy.weatherapp.ui.viewmodel.WeatherViewModel
 import com.parohy.weatherapp.value
 import kotlinx.android.synthetic.main.main_activity.*
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     companion object {
@@ -26,6 +23,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
+
         weatherViewModel = ViewModelProviders.of(
             this,
             application.getViewModelFactory()
@@ -33,11 +31,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         weatherViewModel.get().observe(this, Observer {
             when {
-                it.isSuccessful() -> ResultActivity.start(this)
-                it.isLoading() -> Log.d(TAG, "TODO: Loading...")
-                it.error != null -> Log.d(TAG, "Failed because of: ${it.error}")
+                it.isLoading() -> Log.d(TAG, "Loading...")
+                !it.isStale() && !it.isSuccessful() -> Log.d(TAG, "Error: ${it.error}")
+                else -> ResultActivity.start(this)
             }
         })
+
 
         submitButton.setOnClickListener(this)
     }

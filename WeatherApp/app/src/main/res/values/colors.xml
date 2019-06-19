@@ -7,4 +7,5 @@
     <color name="black_overlay">#66000000</color>
     <color name="appPink">#9C27B0</color>
     <color name="appPinkDark">#5C1568</color>
+    <color name="appBlueDark">#101E9B</color>
 </resources>

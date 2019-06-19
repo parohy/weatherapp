@@ -25,7 +25,6 @@ class ResultActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.result_activity)
 
         weatherViewModel = ViewModelProviders.of(
             this,
@@ -37,7 +36,7 @@ class ResultActivity: AppCompatActivity() {
         DataBindingUtil.setContentView<ResultActivityBinding>(this, R.layout.result_activity)
             .apply {
                 lifecycleOwner = this@ResultActivity
-                viewModel = weatherViewModel
+                weatherModel = weatherViewModel
             }
     }
 }

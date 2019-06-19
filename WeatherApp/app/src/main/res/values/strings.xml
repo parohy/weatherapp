@@ -4,4 +4,6 @@
     <string name="submit_field_hint">ENTER CITY NAME</string>
     <string name="degree_current">%d°</string>
     <string name="degree_maxmin">%d°/%d°</string>
+    <string name="search_day">%s / %s</string>
+    <string name="icon_service">http://openweathermap.org/img/w/%s.png</string>
 </resources>

@@ -18,6 +18,8 @@ class Resource<T> private constructor(
 
     fun isSuccessful(): Boolean = status == Status.SUCCESS
 
+    fun isStale(): Boolean = status == Status.NOT_SET
+
     enum class Status {
         NOT_SET,
         SUCCESS,
