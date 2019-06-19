@@ -5,7 +5,8 @@ data class Weather(
     var degreesMin: Double = 0.0,
     var degreesMax: Double = 0.0,
     var description: String = "",
-    var icon: String = ""
+    var icon: String = "",
+    var name: String = ""
 ) {
     companion object {
         val TAG: String = Weather::class.java.simpleName

@@ -22,6 +22,8 @@ class WeatherDeserializer: JsonDeserializer<Weather?> {
                     degreesCurrent = mainDataObject.get("temp").asDouble
                     degreesMin = mainDataObject.get("temp_min").asDouble
                     degreesMax = mainDataObject.get("temp_max").asDouble
+
+                    name = it.get("name").asString
                 }
 
             }
