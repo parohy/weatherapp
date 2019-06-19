@@ -6,4 +6,6 @@
     <string name="degree_maxmin">%d°/ %d°</string>
     <string name="search_day">%s / %s</string>
     <string name="icon_service">http://openweathermap.org/img/w/%s.png</string>
+    <string name="invalid_input">Invalid input</string>
+    <string name="failed">Failed to fetch</string>
 </resources>

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         weatherViewModel.get().observe(this, Observer {
             when {
                 it.isLoading() -> Log.d(TAG, "Loading...")
-                !it.isStale() && !it.isSuccessful() -> inputError.text = "Failed to fetch"
+                !it.isStale() && !it.isSuccessful() -> inputError.text = getString(R.string.failed)
                 else -> ResultActivity.start(this)
             }
         })
@@ -49,9 +49,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun validateField(): Boolean {
         submitField.error = null
+        inputError.text = ""
         if (!submitField.value().matches(Regex("[a-zA-Z ]+"))) {
-            submitField.error = "Invalid input"
-            inputError.text = "Invalid input"
+            val errorMessage = getString(R.string.invalid_input)
+            submitField.error = errorMessage
+            inputError.text = errorMessage
             return false
         }
         return true
