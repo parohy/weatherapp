@@ -3,7 +3,6 @@ package com.parohy.weatherapp.api.rest
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import com.parohy.weatherapp.api.model.Degree
 import com.parohy.weatherapp.api.model.Weather
 import java.lang.reflect.Type
 
@@ -20,9 +19,9 @@ class WeatherDeserializer: JsonDeserializer<Weather?> {
                     icon = baseDataObject.get("icon").asString
 
                     val mainDataObject = it.getAsJsonObject("main")
-                    degreesCurrent = Degree(mainDataObject.get("temp").asDouble)
-                    degreesMin = Degree(mainDataObject.get("temp_min").asDouble)
-                    degreesMax = Degree(mainDataObject.get("temp_max").asDouble)
+                    degreesCurrent = mainDataObject.get("temp").asDouble
+                    degreesMin = mainDataObject.get("temp_min").asDouble
+                    degreesMax = mainDataObject.get("temp_max").asDouble
                 }
 
             }

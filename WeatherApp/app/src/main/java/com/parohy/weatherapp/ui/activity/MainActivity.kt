@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             application.getViewModelFactory()
         )[WeatherViewModel::class.java]
 
-        weatherViewModel.observe().observe(this, Observer {
+        weatherViewModel.get().observe(this, Observer {
             when {
                 it.isSuccessful() -> ResultActivity.start(this)
                 it.isLoading() -> Log.d(TAG, "TODO: Loading...")

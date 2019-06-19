@@ -3,16 +3,14 @@ package com.parohy.weatherapp.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.parohy.weatherapp.R
+import com.parohy.weatherapp.databinding.ResultActivityBinding
 import com.parohy.weatherapp.getAppComponent
 import com.parohy.weatherapp.getViewModelFactory
-import com.parohy.weatherapp.ui.viewmodel.ViewModelFactory
 import com.parohy.weatherapp.ui.viewmodel.WeatherViewModel
-import javax.inject.Inject
 
 class ResultActivity: AppCompatActivity() {
     companion object {
@@ -28,14 +26,18 @@ class ResultActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.result_activity)
-        
+
         weatherViewModel = ViewModelProviders.of(
             this,
             application.getViewModelFactory()
         )[WeatherViewModel::class.java]
 
-        weatherViewModel.observe().observe(this, Observer {
-            Log.d(TAG, "Result: $it")
-        })
+        application.getAppComponent().inject(weatherViewModel)
+
+        DataBindingUtil.setContentView<ResultActivityBinding>(this, R.layout.result_activity)
+            .apply {
+                lifecycleOwner = this@ResultActivity
+                viewModel = weatherViewModel
+            }
     }
 }
