@@ -1,11 +1,11 @@
 package com.parohy.weatherapp.api.model
 
 data class Weather(
-    private val degreesCurrent: Double,
-    private val degreesMin: Double,
-    private val degreesMax: Double,
-    private val description: String,
-    private val icon: String
+    var degreesCurrent: Degree = Degree(0.0),
+    var degreesMin: Degree = Degree(0.0),
+    var degreesMax: Degree = Degree(0.0),
+    var description: String = "",
+    var icon: String = ""
 ) {
     companion object {
         val TAG: String = Weather::class.java.simpleName

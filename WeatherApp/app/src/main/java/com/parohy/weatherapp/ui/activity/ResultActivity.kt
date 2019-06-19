@@ -28,7 +28,6 @@ class ResultActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.result_activity)
 
         application.getAppComponent().inject(this)
         weatherViewModel = ViewModelProviders.of(this, viewModelFactory)[WeatherViewModel::class.java]

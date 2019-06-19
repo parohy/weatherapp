@@ -2,6 +2,7 @@ package com.parohy.weatherapp.api.rest
 
 import com.google.gson.GsonBuilder
 import com.parohy.weatherapp.BuildConfig
+import com.parohy.weatherapp.api.model.Weather
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
@@ -13,14 +14,20 @@ class WeatherClient @Inject constructor() {
         val TAG: String = WeatherClient::class.java.simpleName
     }
 
-    private val gsonBuilder = GsonBuilder()
+    private var retrofitClient: Retrofit
+    private var weatherService: WeatherService
 
-    private  val retrofitClient: Retrofit = Retrofit.Builder()
-        .baseUrl(BuildConfig.ENDPOINT_URL)
-        .addConverterFactory(GsonConverterFactory.create(gsonBuilder.setLenient().create()))
-        .build()
+    init {
+        val gsonBuilder = GsonBuilder()
+        gsonBuilder.registerTypeAdapter(Weather::class.java, WeatherDeserializer())
 
-    private val weatherService = retrofitClient.create(WeatherService::class.java)
+        retrofitClient = Retrofit.Builder()
+            .baseUrl(BuildConfig.ENDPOINT_URL)
+            .addConverterFactory(GsonConverterFactory.create(gsonBuilder.setLenient().create()))
+            .build()
 
-    fun getWeatherService() = weatherService
+        weatherService = retrofitClient.create(WeatherService::class.java)
+    }
+
+    fun getWeatherService(): WeatherService = weatherService
 }
