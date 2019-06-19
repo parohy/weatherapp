@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.parohy.weatherapp.R
 import com.parohy.weatherapp.getAppComponent
+import com.parohy.weatherapp.getViewModelFactory
 import com.parohy.weatherapp.ui.viewmodel.ViewModelFactory
 import com.parohy.weatherapp.ui.viewmodel.WeatherViewModel
 import javax.inject.Inject
@@ -22,15 +23,17 @@ class ResultActivity: AppCompatActivity() {
         }
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-    lateinit var weatherViewModel: WeatherViewModel
+    private lateinit var weatherViewModel: WeatherViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.result_activity)
+        
+        weatherViewModel = ViewModelProviders.of(
+            this,
+            application.getViewModelFactory()
+        )[WeatherViewModel::class.java]
 
-        application.getAppComponent().inject(this)
-        weatherViewModel = ViewModelProviders.of(this, viewModelFactory)[WeatherViewModel::class.java]
         weatherViewModel.observe().observe(this, Observer {
             Log.d(TAG, "Result: $it")
         })
