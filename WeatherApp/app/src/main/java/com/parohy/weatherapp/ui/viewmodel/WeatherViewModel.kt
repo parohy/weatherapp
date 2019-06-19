@@ -4,7 +4,6 @@ import android.text.format.DateFormat
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.bumptech.glide.Glide
@@ -39,15 +38,15 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
     }
 
     val currentDegreeCelsius: LiveData<Int> = Transformations.map(weatherData) {
-        it.data?.degreesCurrent?.toInt()
+        it.data?.degreesCurrent?.celsius()?.toInt()
     }
 
     val min: LiveData<Int> = Transformations.map(weatherData) {
-        it.data?.degreesMin?.toInt()
+        it.data?.degreesMin?.celsius()?.toInt()
     }
 
     val max: LiveData<Int> = Transformations.map(weatherData) {
-        it.data?.degreesMax?.toInt()
+        it.data?.degreesMax?.celsius()?.toInt()
     }
 
     val weatherDescription: LiveData<String> = Transformations.map(weatherData) {

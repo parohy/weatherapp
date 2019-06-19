@@ -1,9 +1,9 @@
 package com.parohy.weatherapp.api.model
 
 data class Weather(
-    var degreesCurrent: Double = 0.0,
-    var degreesMin: Double = 0.0,
-    var degreesMax: Double = 0.0,
+    var degreesCurrent: Degree = Degree(0.0),
+    var degreesMin: Degree = Degree(0.0),
+    var degreesMax: Degree = Degree(0.0),
     var description: String = "",
     var icon: String = "",
     var name: String = ""
