@@ -10,6 +10,7 @@ import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.parohy.weatherapp.ui.activity.MainActivity
+import org.hamcrest.Matchers.allOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -26,7 +27,6 @@ class MainActivityUITest {
     private lateinit var invalidInput1: String
     private lateinit var invalidInput2: String
     private lateinit var invalidInput3: String
-    private lateinit var invalidInput4: String
     private lateinit var validInput: String
 
     private lateinit var errorMessage: String
@@ -39,48 +39,39 @@ class MainActivityUITest {
     fun initStrings() {
         context = InstrumentationRegistry.getInstrumentation().targetContext
         invalidInput1 = "K0sic€"
-        invalidInput2 = "€verEst"
-        invalidInput3 = "@mazon"
-        invalidInput4 = "Par1s"
-        validInput = "new york"
+        invalidInput2 = "123"
+        invalidInput3 = "los-angels"
+        validInput = "pino sulla sponda del lago maggiore"
         errorMessage = context.getString(R.string.invalid_input)
     }
 
     /** ERROR **/
     @Test
     fun testError1() {
-        onView(withId(R.id.submitField)).perform(replaceText(invalidInput1))
-        onView(withId(R.id.submitButton)).perform(click())
-        onView(withId(R.id.inputError)).check(matches(withText(errorMessage)))
+        onView(allOf(withId(R.id.submitField))).perform(replaceText(invalidInput1))
+        onView(allOf(withId(R.id.submitButton))).perform(click())
+        onView(allOf(withId(R.id.inputError))).check(matches(withText(errorMessage)))
     }
-
     @Test
     fun testError2() {
-        onView(withId(R.id.submitField)).perform(replaceText(invalidInput2))
-        onView(withId(R.id.submitButton)).perform(click())
-        onView(withId(R.id.inputError)).check(matches(withText(errorMessage)))
+        onView(allOf(withId(R.id.submitField))).perform(replaceText(invalidInput2))
+        onView(allOf(withId(R.id.submitButton))).perform(click())
+        onView(allOf(withId(R.id.inputError))).check(matches(withText(errorMessage)))
     }
-
     @Test
     fun testError3() {
-        onView(withId(R.id.submitField)).perform(replaceText(invalidInput3))
-        onView(withId(R.id.submitButton)).perform(click())
-        onView(withId(R.id.inputError)).check(matches(withText(errorMessage)))
+        onView(allOf(withId(R.id.submitField))).perform(replaceText(invalidInput3))
+        onView(allOf(withId(R.id.submitButton))).perform(click())
+        onView(allOf(withId(R.id.inputError))).check(matches(withText(errorMessage)))
     }
 
-    @Test
-    fun testError4() {
-        onView(withId(R.id.submitField)).perform(replaceText(invalidInput4))
-        onView(withId(R.id.submitButton)).perform(click())
-        onView(withId(R.id.inputError)).check(matches(withText(errorMessage)))
-    }
     /******/
 
     /** VALID **/
     @Test
     fun testValid() {
-        onView(withId(R.id.submitField)).perform(typeText(validInput))
-        onView(withId(R.id.submitButton)).perform(click())
-        onView(withId(R.id.inputError)).check(matches(withText("")))
+        onView(allOf(withId(R.id.submitField))).perform(typeText(validInput))
+        onView(allOf(withId(R.id.submitButton))).perform(click())
+        onView(allOf(withId(R.id.inputError))).check(matches(withText("")))
     }
 }
