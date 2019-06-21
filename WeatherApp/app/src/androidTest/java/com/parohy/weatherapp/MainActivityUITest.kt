@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.parohy.weatherapp.ui.activity.MainActivity
 import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.not
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -48,21 +48,21 @@ class MainActivityUITest {
     /** ERROR **/
     @Test
     fun testError1() {
-        onView(allOf(withId(R.id.submitField))).perform(replaceText(invalidInput1))
+        onView(allOf(withId(R.id.searchField))).perform(replaceText(invalidInput1))
         onView(allOf(withId(R.id.submitButton))).perform(click())
-        onView(allOf(withId(R.id.inputError))).check(matches(withText(errorMessage)))
+        onView(allOf(withId(R.id.searchField))).check(matches(hasErrorText(errorMessage)))
     }
     @Test
     fun testError2() {
-        onView(allOf(withId(R.id.submitField))).perform(replaceText(invalidInput2))
+        onView(allOf(withId(R.id.searchField))).perform(replaceText(invalidInput2))
         onView(allOf(withId(R.id.submitButton))).perform(click())
-        onView(allOf(withId(R.id.inputError))).check(matches(withText(errorMessage)))
+        onView(allOf(withId(R.id.searchField))).check(matches(hasErrorText(errorMessage)))
     }
     @Test
     fun testError3() {
-        onView(allOf(withId(R.id.submitField))).perform(replaceText(invalidInput3))
+        onView(allOf(withId(R.id.searchField))).perform(replaceText(invalidInput3))
         onView(allOf(withId(R.id.submitButton))).perform(click())
-        onView(allOf(withId(R.id.inputError))).check(matches(withText(errorMessage)))
+        onView(allOf(withId(R.id.searchField))).check(matches(hasErrorText(errorMessage)))
     }
 
     /******/
@@ -70,8 +70,8 @@ class MainActivityUITest {
     /** VALID **/
     @Test
     fun testValid() {
-        onView(allOf(withId(R.id.submitField))).perform(typeText(validInput))
+        onView(allOf(withId(R.id.searchField))).perform(typeText(validInput))
         onView(allOf(withId(R.id.submitButton))).perform(click())
-        onView(allOf(withId(R.id.inputError))).check(matches(withText("")))
+        onView(allOf(withId(R.id.searchField))).check(matches(not(hasErrorText(errorMessage))))
     }
 }

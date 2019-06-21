@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.parohy.weatherapp.R
 import com.parohy.weatherapp.databinding.ResultActivityBinding
-import com.parohy.weatherapp.getAppComponent
 import com.parohy.weatherapp.getViewModelFactory
 import com.parohy.weatherapp.ui.viewmodel.WeatherViewModel
 
