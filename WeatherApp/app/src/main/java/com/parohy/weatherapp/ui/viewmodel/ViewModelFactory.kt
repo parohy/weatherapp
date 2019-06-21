@@ -34,4 +34,9 @@ abstract class ViewModelModule {
     @ViewModelKey(WeatherViewModel::class)
     internal abstract fun weatherViewModel(viewModel: WeatherViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel::class)
+    internal abstract fun searchViewModel(viewModel: SearchViewModel): ViewModel
+
 }

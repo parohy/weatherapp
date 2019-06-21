@@ -1,74 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<layout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:background="@drawable/background">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="searchModel" type="com.parohy.weatherapp.ui.viewmodel.SearchViewModel"/>
+    </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:background="@drawable/background">
 
-        <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:padding="8dp"
-                android:background="@drawable/button_righty"
-                app:srcCompat="@drawable/arrow"
-                android:scaleType="fitCenter"
-                android:id="@+id/submitButton"
-                android:layout_weight="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginRight="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/submitField"/>
-        <EditText
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:padding="5dp"
-                android:paddingLeft="10dp"
-                android:paddingStart="10dp"
-                android:textSize="14sp"
-                android:inputType="textPersonName"
-                android:background="@drawable/button_lefty"
-                android:hint="@string/submit_field_hint"
-                android:textColorHint="@color/appPink"
-                android:textColor="@color/appPinkDark"
-                android:ems="10"
-                android:id="@+id/submitField"
-                android:layout_marginStart="24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@+id/logoView"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/submitButton"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/logo_with_name"
-                android:id="@+id/logoView"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="50dp"
-                android:layout_marginStart="50dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="50dp"
-                android:layout_marginRight="50dp"/>
-        <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" android:id="@+id/inputError"
-                android:layout_marginTop="4dp"
-                app:layout_constraintTop_toBottomOf="@+id/submitField"
-                app:layout_constraintStart_toStartOf="@+id/submitField"
-                app:layout_constraintEnd_toEndOf="@+id/submitField" android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp" android:layout_marginRight="8dp" android:layout_marginEnd="8dp"
-                android:textColor="@android:color/holo_red_dark"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:background="@drawable/button_righty"
+                    app:srcCompat="@drawable/arrow"
+                    android:scaleType="fitCenter"
+                    android:id="@+id/submitButton"
+                    android:onClick="@{() -> searchModel.search()}"
+                    android:layout_weight="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/submitField"/>
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+                    android:textSize="14sp"
+                    android:inputType="textPersonName"
+                    android:background="@drawable/button_lefty"
+                    android:hint="@string/submit_field_hint"
+                    android:textColorHint="@color/appPink"
+                    android:textColor="@color/appPinkDark"
+                    android:text="@={searchModel.searchWord}"
+                    app:isError="@{searchModel.error}"
+                    android:ems="10"
+                    android:id="@+id/submitField"
+                    android:layout_marginStart="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/logoView"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/submitButton"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/logo_with_name"
+                    android:id="@+id/logoView"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginRight="50dp"/>
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/inputError"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/failed"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/submitField"
+                    app:layout_constraintStart_toStartOf="@+id/submitField"
+                    app:layout_constraintEnd_toEndOf="@+id/submitField" android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp" android:layout_marginRight="8dp" android:layout_marginEnd="8dp"
+                    android:textColor="@android:color/holo_red_dark"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

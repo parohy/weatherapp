@@ -31,8 +31,6 @@ class ResultActivity: AppCompatActivity() {
             application.getViewModelFactory()
         )[WeatherViewModel::class.java]
 
-        application.getAppComponent().inject(weatherViewModel)
-
         DataBindingUtil.setContentView<ResultActivityBinding>(this, R.layout.result_activity)
             .apply {
                 lifecycleOwner = this@ResultActivity
