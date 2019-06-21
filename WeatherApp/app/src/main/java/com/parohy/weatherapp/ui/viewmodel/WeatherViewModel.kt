@@ -37,6 +37,10 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
         it.data?.name
     }
 
+    val loading: LiveData<Boolean> = Transformations.map(weatherData) {
+        it.isLoading()
+    }
+
     val currentDegreeCelsius: LiveData<Int> = Transformations.map(weatherData) {
         it.data?.degreesCurrent?.celsius()?.toInt()
     }
