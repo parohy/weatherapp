@@ -2,6 +2,7 @@ package com.parohy.weatherapp.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -12,7 +13,7 @@ import com.parohy.weatherapp.getViewModelFactory
 import com.parohy.weatherapp.ui.viewmodel.SearchViewModel
 
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
     companion object {
         val TAG: String = MainActivity::class.java.simpleName
     }

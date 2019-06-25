@@ -53,7 +53,9 @@ class SearchViewModel @Inject constructor(private val weatherRepository: Weather
 
     fun search() {
         if (validateField()) {
-            weatherRepository.getWeather(searchWord.value!!)
+//            weatherRepository.getWeather(searchWord.value!!)
+            weatherRepository.getWeatherRX(searchWord.value!!)
+//            weatherRepository.getWeatherXStreams(searchWord.value!!)
         }
     }
 

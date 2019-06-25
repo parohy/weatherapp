@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.parohy.weatherapp.BuildConfig
 import com.parohy.weatherapp.api.Resource
 import com.parohy.weatherapp.api.model.Weather
+import io.reactivex.Flowable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,4 +39,8 @@ class Remote @Inject constructor(private val weatherClient: WeatherClient) {
 
         return data
     }
+
+    fun weatherInCityRX(city: String): Flowable<Weather> =
+        weatherClient.getWeatherService().fetchRX(BuildConfig.API_KEY, city)
+            .subscribeOn(Schedulers.io())
 }
